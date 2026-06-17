@@ -29,10 +29,10 @@ const linkedList = () => {
 		size++;
 	};
 	
-	const at = (key) => {
-		if (value > size) return undefined;
+	const at = (index) => {
+		if (index > size) return undefined;
 		let current = head;
-		for (i = 0; i < value; i++) {
+		for (i = 0; i < index; i++) {
 			current = current.next;
 		};
 		if (current === null) return undefined;
@@ -47,7 +47,7 @@ const linkedList = () => {
 
 	const contains = (key) => {
 		let current = head;
-		while (current && current.value !== value) {
+		while (current && current.key !== key) {
 			current = current.next;
 		};
 		if (current === null) {
@@ -60,7 +60,7 @@ const linkedList = () => {
 	const findIndex = (key) => {
 		let current = head;
 		let index = 0;
-		while (current && current.value !== value) {
+		while (current && current.key !== key) {
 			current = current.next;
 			index++;
 		};
@@ -69,6 +69,14 @@ const linkedList = () => {
 		} else {
 			return index;
 		};
+	};
+
+	const edit = (key, newValue) => {
+		const current = head;
+		while (current && current.key !== key) {
+			current = current.next;
+		};
+		current.value = newValue;
 	};
 
 	const toString = () => {
@@ -86,7 +94,7 @@ const linkedList = () => {
 	const displayTail = () => tail;
 	const displaySize = () => size;
 
-	return { append, prepend, displayHead, displayTail, at, pop, contains, findIndex, toString, displaySize };
+	return { append, prepend, displayHead, displayTail, at, pop, contains, findIndex, edit, toString, displaySize };
 };
 
 const createNode = (key = null, value = null) => {

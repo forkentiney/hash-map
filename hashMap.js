@@ -20,11 +20,25 @@ function hashMap() {
 	const set = (key, value) => {
 		const index = hash(key);
 
-		buckets[index].prepend(key, value);
-		size += 1;
+		if (buckets[index].contains(key)) {
+			buckets[index].edit(key, value);
+		} else {
+			buckets[index].prepend(key, value);
+			size += 1;
+		};
 	};
 
-	return { hash, set, buckets, };
+	const getSize = () => size;
+
+	return { hash, set, buckets, getSize };
 };
 
 const test = hashMap();
+
+test.set("Joshua", "1");
+console.log(test.buckets[test.hash("Joshua")].displayHead());
+test.set("Joshua", "2");
+console.log(test.buckets[test.hash("Joshua")].displayHead());
+test.set("Claire", "2");
+console.log(test.buckets[test.hash("Claire")].displayHead());
+console.log(test.getSize());
