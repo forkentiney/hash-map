@@ -1,6 +1,10 @@
+import { linkedList } from "./linked-list.js";
+
 function hashMap() {
 	const loadFactor = 0.75;
 	const capacity = 16;
+	let size = 0;
+	let buckets = Array.from({ length: capacity }, () => linkedList());
 
 	const hash = (key) => {
 		let hashCode = 0;
@@ -13,11 +17,14 @@ function hashMap() {
 		return hashCode;
 	};
 
-	return { hash, };
+	const set = (key, value) => {
+		const index = hash(key);
+
+		buckets[index].prepend(key, value);
+		size += 1;
+	};
+
+	return { hash, set, buckets, };
 };
 
 const test = hashMap();
-
-console.log(test.hash("Joshua"));
-console.log(test.hash("osJauh"))
-console.log(test.hash("Claire"));
