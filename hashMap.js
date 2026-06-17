@@ -5,9 +5,9 @@ function hashMap() {
 	const hash = (key) => {
 		let hashCode = 0;
 
-		const primeNumber = 5;
+		const primeNumber = 31;
 		for (let i = 0; i < key.length; i++) {
-			hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % capacity;
+			hashCode = ((primeNumber * hashCode) + key.charCodeAt(i)) % capacity;
 		};
 
 		return hashCode;
@@ -19,4 +19,5 @@ function hashMap() {
 const test = hashMap();
 
 console.log(test.hash("Joshua"));
+console.log(test.hash("osJauh"))
 console.log(test.hash("Claire"));
