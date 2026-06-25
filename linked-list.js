@@ -32,7 +32,7 @@ const linkedList = () => {
 	const at = (index) => {
 		if (index > size) return undefined;
 		let current = head;
-		for (i = 0; i < index; i++) {
+		for (let i = 0; i < index; i++) {
 			current = current.next;
 		};
 		if (current === null) return undefined;
@@ -82,7 +82,7 @@ const linkedList = () => {
 	const toString = () => {
 		let string = ``;
 		let current = head;
-		for (i = 0; i < size; i++) {
+		for (let i = 0; i < size; i++) {
 			string += `( ${current.value} ) -> `;
 			current = current.next;
 		};

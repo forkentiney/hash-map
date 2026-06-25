@@ -28,17 +28,32 @@ function hashMap() {
 		};
 	};
 
+	const get = (key) => {
+		const index = hash(key);
+
+		if (!buckets[index].contains(key)) return null;
+
+		const listIndex = buckets[index].findIndex(key);
+
+		const value = buckets[index].at(listIndex).value;
+
+		return value;
+	}
+
 	const getSize = () => size;
 
-	return { hash, set, buckets, getSize };
+	return { hash, set, buckets, get, getSize };
 };
 
 const test = hashMap();
 
 test.set("Joshua", "1");
 console.log(test.buckets[test.hash("Joshua")].displayHead());
-test.set("Joshua", "2");
+test.set("Joshua", "5");
 console.log(test.buckets[test.hash("Joshua")].displayHead());
 test.set("Claire", "2");
 console.log(test.buckets[test.hash("Claire")].displayHead());
 console.log(test.getSize());
+console.log(test.get("Joshua"));
+console.log(test.get("Claire"));
+console.log(test.get("Greg"));
