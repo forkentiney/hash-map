@@ -2,7 +2,7 @@ import { linkedList } from "./linked-list.js";
 
 function hashMap() {
 	const loadFactor = 0.75;
-	const capacity = 16;
+	let capacity = 16;
 	let size = 0;
 	let buckets = Array.from({ length: capacity }, () => linkedList());
 
@@ -45,20 +45,26 @@ function hashMap() {
 		};
 	};
 
+	const clear = () => {
+		for (let i = 0; i < buckets.length; i++) {
+			const items = buckets[i];
+			while (items.displayHead()) {
+				items.pop();
+				size--;
+			};
+		};
+	};
+
 	const length = () => size;
 
-	return { hash, set, buckets, get, has, length };
+	return { hash, set, buckets, get, has, clear, length };
 };
 
 const test = hashMap();
 
 test.set("Joshua", "1");
-console.log(test.buckets[test.hash("Joshua")].displayHead());
-test.set("Joshua", "5");
-console.log(test.buckets[test.hash("Joshua")].displayHead());
 test.set("Claire", "2");
-console.log(test.buckets[test.hash("Claire")].displayHead());
 console.log(test.length());
+test.clear();
 console.log(test.get("Joshua"));
-console.log(test.get("Claire"));
-console.log(test.get("Greg"));
+console.log(test.length());
