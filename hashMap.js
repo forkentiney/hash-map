@@ -58,7 +58,12 @@ function hashMap() {
 	const keys = () => {
 		const array = [];
 		buckets.forEach((bucket) => {
-			if (bucket.getKeys()) array.push(bucket.getKeys());
+			if (bucket.getKeys()) {
+				let linkedList = bucket.getKeys();
+				linkedList.forEach((node) => {
+					array.push(node);
+				});
+			};
 		});
 		return array;
 	};

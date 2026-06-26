@@ -89,10 +89,15 @@ const linkedList = () => {
 		return string;
 	};
 
-	const getKeys = (array) => {
+	const getKeys = () => {
 		if (!head) return null;
+		const array = [];
 		let current = head;
-		return current.key;
+		while (current) {
+			array.push(current.key);
+			current = current.next;
+		};
+		return array;
 	};
 
 	const displayHead = () => head;
