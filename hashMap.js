@@ -55,9 +55,17 @@ function hashMap() {
 		};
 	};
 
+	const keys = () => {
+		const array = [];
+		buckets.forEach((bucket) => {
+			if (bucket.getKeys()) array.push(bucket.getKeys());
+		});
+		return array;
+	};
+
 	const length = () => size;
 
-	return { hash, set, buckets, get, has, clear, length };
+	return { hash, set, buckets, get, has, clear, keys, length };
 };
 
 const test = hashMap();
@@ -65,6 +73,4 @@ const test = hashMap();
 test.set("Joshua", "1");
 test.set("Claire", "2");
 console.log(test.length());
-test.clear();
-console.log(test.get("Joshua"));
-console.log(test.length());
+console.log(test.keys());

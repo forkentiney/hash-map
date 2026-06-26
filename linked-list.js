@@ -89,11 +89,17 @@ const linkedList = () => {
 		return string;
 	};
 
+	const getKeys = (array) => {
+		if (!head) return null;
+		let current = head;
+		return current.key;
+	};
+
 	const displayHead = () => head;
 	const displayTail = () => tail;
 	const displaySize = () => size;
 
-	return { append, prepend, displayHead, displayTail, at, pop, contains, findIndex, edit, toString, displaySize };
+	return { append, prepend, displayHead, displayTail, at, pop, contains, findIndex, edit, toString, getKeys, displaySize };
 };
 
 const createNode = (key = null, value = null) => {
