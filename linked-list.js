@@ -6,8 +6,7 @@ const linkedList = () => {
 	const append = (key, value) => {
 		const newNode = createNode(key, value);
 		if (!head) {
-			head = newNode;
-		} else {
+			head = newNode; } else {
 			let current = head;
 			while (current.next) {
 				current = current.next;
@@ -100,11 +99,22 @@ const linkedList = () => {
 		return array;
 	};
 
+	const getValues = () => {
+		if (!head) return null;
+		const array = [];
+		let current = head;
+		while (current) {
+			array.push(current.value);
+			current = current.next;
+		};
+		return array;
+	};
+
 	const displayHead = () => head;
 	const displayTail = () => tail;
 	const displaySize = () => size;
 
-	return { append, prepend, displayHead, displayTail, at, pop, contains, findIndex, edit, toString, getKeys, displaySize };
+	return { append, prepend, displayHead, displayTail, at, pop, contains, findIndex, edit, toString, getKeys, getValues, displaySize };
 };
 
 const createNode = (key = null, value = null) => {
