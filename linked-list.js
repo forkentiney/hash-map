@@ -42,7 +42,6 @@ const linkedList = () => {
 	const pop = () => {
 		const oldHead = head;
 		head = head.next;
-		return `The value ${oldHead.value} has been removed. The new head is ${head.value}.`;
 	};
 
 	const contains = (key) => {
