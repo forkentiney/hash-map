@@ -27,15 +27,14 @@ function hashMap() {
 			size += 1;
 		};
 
-		if ((size / capacity) > loadFactor) {
-			resize();
-		};
+		if ((size / capacity) > loadFactor) resize();
 	};
 
 	const resize = () => {
 		const oldMap = entries();
 		capacity = capacity * 2;
 		buckets = Array.from({ length: capacity }, () => linkedList());
+		size = 0;
 
 		oldMap.forEach((entry) => {
 			set(entry[0], entry[1]);
@@ -111,6 +110,9 @@ function hashMap() {
 	};
 
 	const length = () => size;
+	const displayCapacity = () => capacity;
 
-	return { hash, set, buckets, get, has, clear, keys, values, entries, resize, length };
+	return { hash, set, buckets, get, has, clear, keys, values, entries, resize, length, displayCapacity };
 };
+
+export { hashMap };
