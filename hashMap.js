@@ -32,7 +32,15 @@ function hashMap() {
 		};
 	};
 
-	const resize = () => {};
+	const resize = () => {
+		const oldMap = entries();
+		capacity = capacity * 2;
+		buckets = Array.from({ length: capacity }, () => linkedList());
+
+		oldMap.forEach((entry) => {
+			set(entry[0], entry[1]);
+		});
+	};
 
 	const get = (key) => {
 		const index = hash(key);
@@ -104,7 +112,7 @@ function hashMap() {
 
 	const length = () => size;
 
-	return { hash, set, buckets, get, has, clear, keys, values, entries, length };
+	return { hash, set, buckets, get, has, clear, keys, values, entries, resize, length };
 };
 
 const test = hashMap();
@@ -114,4 +122,6 @@ test.set("Claire", "2");
 console.log(test.length());
 console.log(test.keys());
 console.log(test.values());
+console.log(test.entries());
+test.resize();
 console.log(test.entries());
