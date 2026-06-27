@@ -114,14 +114,3 @@ function hashMap() {
 
 	return { hash, set, buckets, get, has, clear, keys, values, entries, resize, length };
 };
-
-const test = hashMap();
-
-test.set("Joshua", "1");
-test.set("Claire", "2");
-console.log(test.length());
-console.log(test.keys());
-console.log(test.values());
-console.log(test.entries());
-test.resize();
-console.log(test.entries());
