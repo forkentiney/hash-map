@@ -93,7 +93,10 @@ function hashMap() {
 		const entries = [];
 
 		for (let i = 0; i < key.length; i++) {
-			entries.push(`[${key[i]}, ${value[i]}]`);
+			const array = [];
+			array.push(key[i]);
+			array.push(value[i]);
+			entries.push(array);
 		};
 
 		return entries;
