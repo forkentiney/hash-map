@@ -26,7 +26,13 @@ function hashMap() {
 			buckets[index].prepend(key, value);
 			size += 1;
 		};
+
+		if ((size / capacity) > loadFactor) {
+			resize();
+		};
 	};
+
+	const resize = () => {};
 
 	const get = (key) => {
 		const index = hash(key);
@@ -81,9 +87,21 @@ function hashMap() {
 		return array;
 	};
 
+	const entries = () => {
+		const key = keys();
+		const value = values();
+		const entries = [];
+
+		for (let i = 0; i < key.length; i++) {
+			entries.push(`[${key[i]}, ${value[i]}]`);
+		};
+
+		return entries;
+	};
+
 	const length = () => size;
 
-	return { hash, set, buckets, get, has, clear, keys, values, length };
+	return { hash, set, buckets, get, has, clear, keys, values, entries, length };
 };
 
 const test = hashMap();
@@ -93,3 +111,4 @@ test.set("Claire", "2");
 console.log(test.length());
 console.log(test.keys());
 console.log(test.values());
+console.log(test.entries());
